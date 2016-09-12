@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+
+        <title>Material DatePicker</title>
+
+        <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.indigo-pink.min.css">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="stylesheet" type="text/css" href="dist/datepicker.min.css" />
+
+        <style type="text/css">
+            body {
+                padding: 3em;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+            .calendar-container {
+                display: flex;
+            }
+
+            .calendar {
+                width: 380px;
+                margin: 0 20px;
+            }
+
+            pre {
+                padding: 1.5em;
+                background-color: #E0E0E0;
+            }
+
+            .mdl-data-table {
+                width: 100%
+            }
+
+            .mdl-data-table tbody tr:nth-child(even) { background-color: #EEEEEE}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+
+            <div id="Demo">
+                <h3>Use Datepicker</h3>
+
+                <h5>1. With Material Design Lite</h5>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input type="text" class="mdl-textfield__input mdl-datepicker__input" data-pattern="DD/MM/YYYY" data-min="today" data-max="15/08/2016" id="date-input" value="" />
+                    <label class="mdl-textfield__label" for="date-input">Date de naissance...</label>
+                </div>
+
+                <p>Use material-datepicker.min.js</p>
+
+                <code type="html">
+                    <pre>
+&lt;script type=&quot;text/javascript&quot; src=&quot;node_modules/moment/min/moment.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;node_modules/epepite-datepicker/dist/material-datepicker.min.js&quot;&gt;&lt;/script&gt;  
+                    </pre>
+                </code>
+
+                <p>Just add <span class="mdl-color-text--blue-500">mdl-datepicker__input</span> class from your node</p>
+
+                <code type="html">
+                    <pre>
+&lt;input class=&quot;mdl-datepicker__input&quot; type=&quot;text&quot; id=&quot;date-input&quot; value=&quot;&quot; /&gt;
+                    </pre>
+                </code>
+
+                <h5>2. epepite Material Design Lite</h5>
+
+                <p>Use datepicker.min.js</p>
+
+
+                <code type="html">
+                    <pre>
+&lt;script type=&quot;text/javascript&quot; src=&quot;node_modules/moment/min/moment.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;node_modules/epepite-datepicker/dist/datepicker.min.js&quot;&gt;&lt;/script&gt;  
+                    </pre>
+                </code>
+
+                <p>Create <span class="mdl-color-text--blue-500">DatePicker</span> instance</p>
+                <code type="javascript">
+                    <pre>
+var datepicker = new epepite.DatePicker.DatePicker({
+    'input' : '(string selector or HTMLElement)'
+});
+                    </pre>
+                </code>
+
+
+                <h5>3. Use independent calendar</h5>
+                <p>Calendar has no dependencies. You can use it without MDL or momentjs</p>
+
+                <div class="calendar-container">
+                    <div id="CalendarContainer" class="calendar"></div>
+                </div>
+            </div>
+
+            <h6>Selected date : <span class="current-date mdl-color-text--blue-500"></span></h6>
+            <p class="current-update"></p>
+            <p class="type-update"></p>
+
+            <p>Use calendar.min.js</p>
+                <code type="html">
+                    <pre>
+&lt;script type=&quot;text/javascript&quot; src=&quot;node_modules/epepite-datepicker/dist/calendar.min.js&quot;&gt;&lt;/script&gt;  
+                    </pre>
+                </code>
+
+            <p>Create <span class="mdl-color-text--blue-500">Calendar</span> instance</p>
+            <code type="javascript">
+                <pre>
+
+    var calendar = new epepite.DatePicker.Calendar({
+        'container' : document.querySelector('#CalendarContainer'),
+        'min_date'  : new Date(),
+        'max_date'  : <span class="demo-calendar-date">new Date(2016, 7, 15)</span>
+    });
+
+    calendar.on('date_update', function(event) {
+        document.querySelector('.current-date').innerHTML = moment(event.detail.date).format('DD/MM/YYYY');
+    });
+                </pre>
+            </code>
+        </div>
+
+        <h3>Options</h3>
+
+        <h5>HTMLElement attributes</h5>
+        <table class="mdl-data-table">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Name</th>
+                    <th class="mdl-data-table__cell--non-numeric">Type</th>
+                    <th class="mdl-data-table__cell--non-numeric">Default</th>
+                    <th class="mdl-data-table__cell--non-numeric">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">data-pattern</td>
+                    <td class="mdl-data-table__cell--non-numeric">string</td>
+                    <td class="mdl-data-table__cell--non-numeric">DD/MM/YYYY</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        A <a href="http://momentjs.com/docs/#/parsing/string-format/" target="_blank">momentjs</a> valid pattern
+                    </td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">data-min</td>
+                    <td class="mdl-data-table__cell--non-numeric">string</td>
+                    <td class="mdl-data-table__cell--non-numeric">NULL</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        Min date. Use <a href="http://momentjs.com/docs/#/parsing/string-format/" target="_blank">momentjs</a> pattern.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">data-max</td>
+                    <td class="mdl-data-table__cell--non-numeric">string</td>
+                    <td class="mdl-data-table__cell--non-numeric">NULL</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        Max date. Use <a href="http://momentjs.com/docs/#/parsing/string-format/" target="_blank">momentjs</a> pattern.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h5>epepite.DatePicker.DatePicker</h5>
+        <table class="mdl-data-table">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Name</th>
+                    <th class="mdl-data-table__cell--non-numeric">Type</th>
+                    <th class="mdl-data-table__cell--non-numeric">Default</th>
+                    <th class="mdl-data-table__cell--non-numeric">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">input</td>
+                    <td class="mdl-data-table__cell--non-numeric">string selector or HTMLElement</td>
+                    <td class="mdl-data-table__cell--non-numeric">NULL</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        Required options.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">min_date</td>
+                    <td class="mdl-data-table__cell--non-numeric">Date</td>
+                    <td class="mdl-data-table__cell--non-numeric">NULL</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        Min date
+                    </td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">container</td>
+                    <td class="mdl-data-table__cell--non-numeric">string selector or HTMLElement</td>
+                    <td class="mdl-data-table__cell--non-numeric">NULL</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        Max Date
+                    </td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">format</td>
+                    <td class="mdl-data-table__cell--non-numeric">string</td>
+                    <td class="mdl-data-table__cell--non-numeric">DD/MM/YY</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        A <a href="http://momentjs.com/docs/#/parsing/string-format/" target="_blank">momentjs</a> valid pattern
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h5>epepite.DatePicker.Calendar</h5>
+        <table class="mdl-data-table">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Name</th>
+                    <th class="mdl-data-table__cell--non-numeric">Type</th>
+                    <th class="mdl-data-table__cell--non-numeric">Default</th>
+                    <th class="mdl-data-table__cell--non-numeric">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">container</td>
+                    <td class="mdl-data-table__cell--non-numeric">string selector or HTMLElement</td>
+                    <td class="mdl-data-table__cell--non-numeric">NULL</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        Required options.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">min_date</td>
+                    <td class="mdl-data-table__cell--non-numeric">Date</td>
+                    <td class="mdl-data-table__cell--non-numeric">NULL</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        Min date
+                    </td>
+                </tr>
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">container</td>
+                    <td class="mdl-data-table__cell--non-numeric">string selector or HTMLElement</td>
+                    <td class="mdl-data-table__cell--non-numeric">NULL</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        Max Date
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
+        <script src="node_modules/moment/min/moment.min.js"></script>
+        <script src="dist/material-datepicker.min.js"></script>
+        <script type="text/javascript">
+            window.addEventListener('load', function() {
+                var date     = new Date(),
+                    demoDate = new Date(date.getFullYear(), date.getMonth() + 3, 15)
+                ;
+
+                document.querySelector('.demo-calendar-date').innerHTML = 'new Date('+ demoDate.getFullYear() +', '+ demoDate.getMonth() +', '+ demoDate.getDate() +')';
+
+                var calendar = new epepite.DatePicker.Calendar({
+                    'container' : document.querySelector('#CalendarContainer'),
+                    'min_date'  : date,
+                    'max_date'  : demoDate
+                });
+
+                calendar.on('date_update', function(event) {
+                    document.querySelector('.current-date').innerHTML = moment(event.detail.date).format('DD/MM/YYYY');
+                });
+            });
+        </script>
+    </body>
+</html>

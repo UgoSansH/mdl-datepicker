@@ -1,0 +1,132 @@
+@import "variables";
+
+.mdl-calendar {
+    display: none;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: $color-white;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    @include shadow();
+}
+
+.mdl-calendar.is-visible {
+    display: flex;
+}
+
+.mdl-calendar__header,
+.mdl-calendar__body,
+.mdl-calendar__footer {
+    padding: 18px;
+}
+
+.mdl-calendar__button {
+    cursor: pointer;
+    color: $color-gray;
+    font-size: 1em;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+}
+
+.mdl-calendar__header {
+    color: $color-white;
+    background-color: $color-primary;
+}
+
+
+.mdl-calendar__header-year,
+.mdl-calendar__body .mdl-calendar__body-month {
+    display: flex;
+    margin: 0;
+}
+
+.mdl-calendar__header-year {
+    color: $color-primary-100;
+}
+
+.mdl-calendar__header .mdl-calendar__year,
+.mdl-calendar__body .mdl-calendar__body-month-title {
+    flex: 1;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.mdl-calendar__header .mdl-calendar__button {
+    color: $color-gray-300;
+}
+
+.mdl-calendar__header-fulldate {
+    font-size: 2em;
+    padding: 0;
+    margin: 20px 0 0
+}
+
+.mdl-calendar__body .mdl-calendar__body-month { font-weight: 500 }
+
+.mdl-calendar__body-month,
+.mdl-calendar__week-labels { margin-bottom: 6px }
+
+.mdl-calendar__week {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mdl-calendar__week-item {
+    flex: 1;
+    display: block;
+    font-weight: 500;
+    text-align: center;
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    padding: 0;
+    margin: 2px 1px;
+    border-radius: 50%;
+    background: none;
+    border: none;
+    box-sizing: border-box;
+}
+
+.mdl-calendar__week-item,
+.mdl-calendar__week-item:focus,
+.mdl-calendar__week-item:hover { outline: none }
+
+.mdl-calendar__week-item:hover:not(.is-disabled):not(.mdl-calendar__week-label),
+.mdl-calendar__week-item.is-selected {
+    cursor: pointer;
+    color: $color-white;
+    background-color: $color-primary
+}
+
+.mdl-calendar__week-item.is-disabled,
+.mdl-calendar__week-item.mdl-calendar__week-label {
+    color: $color-gray-400;
+}
+
+.mdl-calendar__week-item.mdl-calendar__week-label { font-weight: normal }
+
+.mdl-calendar__week-item.mdl-calendar__day-today {
+    color: $color-primary;
+    background-color: $color-gray-200;
+}
+
+.mdl-calendar__footer { text-align: right }
+
+/**
+ * Toggle Actions
+ */
+.mdl-calendar__year--next,
+.mdl-calendar__year--prev,
+.mdl-calendar__month--next,
+.mdl-calendar__month--prev { display: none; }
+
+.mdl-calendar__year--next.is-visible,
+.mdl-calendar__year--prev.is-visible,
+.mdl-calendar__month--next.is-visible,
+.mdl-calendar__month--prev.is-visible { display: flex; }

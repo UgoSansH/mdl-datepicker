@@ -1,0 +1,32 @@
+{
+  "name": "ugosansh-mdl-datepicker",
+  "version": "1.0.0",
+  "description": "Material design calendar and datepicker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UgoSansH/mdl-datepicker.git"
+  },
+  "readme": "README.md",
+  "keywords": [
+    "material",
+    "design",
+    "datepicker"
+  ],
+  "author": "Ugo Without H <ugo@withouth.com>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "load-grunt-tasks": "^3.5.0"
+  },
+  "dependencies": {
+    "moment": "^2.13.0"
+  }
+}
