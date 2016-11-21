@@ -184,13 +184,15 @@
 
     epepite.DatePicker.BookingDay.prototype.renderBookings = function()
     {
-        if ((this.booking) && (this.booking.events)) {
+        if ((this.booking)) {
             var container = document.createElement('div');
 
-            for (var i = 0; i < this.booking.events.length; i++) {
-                var entity     = this.booking.events[i];
+            if (this.booking.events) {
+                for (var i = 0; i < this.booking.events.length; i++) {
+                    var entity     = this.booking.events[i];
 
-                this.renderEvent(this.booking.events[i], container);
+                    this.renderEvent(this.booking.events[i], container);
+                }
             }
 
             container.classList.add(this.CssClasses_.EVENTS);
