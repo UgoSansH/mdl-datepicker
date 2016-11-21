@@ -9,7 +9,7 @@
         epepite.DatePicker = {};
     }
 
-    epepite.DatePicker.Calendar = function(config, translator, templating, booking)
+    epepite.DatePicker.Calendar = function(config, translator, templating, unavailabilities)
     {
         this.date       = null;
         this.oldDate    = null;

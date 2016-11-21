@@ -75,6 +75,10 @@
 
 
 .mdl-calendar__bookings {
+}
+
+.mdl-calendar__booking {
+    display: none;
     position: relative;
     overflow-y: scroll;
     width: 100%;
@@ -83,10 +87,6 @@
     box-sizing: border-box;
 
     @include shadow();
-}
-
-.mdl-calendar__booking {
-    display: none;
 }
 
 .mdl-calendar__booking.is-visible { display: block }

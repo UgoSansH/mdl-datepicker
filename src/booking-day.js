@@ -36,8 +36,6 @@
             this.date = date;
         }
 
-        console.log(this.date);
-
         this.render();
     };
 
@@ -84,50 +82,53 @@
     epepite.DatePicker.BookingDay.prototype.render = function()
     {
         if (!this.element) {
-            this.element = document.createElement('div');
+            if (this.booking) {
+                this.element = document.createElement('div');
 
-            var header   = document.createElement('div'),
-                btnClose = document.createElement('button'),
-                btnIcon  = document.createElement('i'),
-                events   = document.createElement('div'),
-                grid     = this.renderGrid(),
-                bookings = this.renderBookings()
-            ;
+                var header   = document.createElement('div'),
+                    btnClose = document.createElement('button'),
+                    btnIcon  = document.createElement('i'),
+                    events   = document.createElement('div'),
+                    grid     = this.renderGrid(),
+                    bookings = this.renderBookings()
+                ;
 
-            this.element.classList.add(this.CssClasses_.CONTAINER);
+                this.element.classList.add(this.CssClasses_.CONTAINER);
 
-            header.classList.add(this.CssClasses_.HEADER);
-            btnClose.classList.add(this.CssClasses_.BTN_CLOSE);
-            btnClose.classList.add(this.CssClasses_.BUTTON);
-            btnClose.classList.add(this.CssClasses_.BUTTON_COLORED);
-            btnIcon.classList.add(this.CssClasses_.ICON);
-            events.classList.add(this.CssClasses_.EVENTS);
+                header.classList.add(this.CssClasses_.HEADER);
+                btnClose.classList.add(this.CssClasses_.BTN_CLOSE);
+                btnClose.classList.add(this.CssClasses_.BUTTON);
+                btnClose.classList.add(this.CssClasses_.BUTTON_COLORED);
+                btnIcon.classList.add(this.CssClasses_.ICON);
+                events.classList.add(this.CssClasses_.EVENTS);
 
-            if (this.config.material_icons) {
-                btnIcon.appendChild(document.createTextNode(this.config.icon_close));
-            } else {
-                btnIcon.appendChild(document.createTextNode('x'));
+                if (this.config.material_icons) {
+                    btnIcon.appendChild(document.createTextNode(this.config.icon_close));
+                } else {
+                    btnIcon.appendChild(document.createTextNode('x'));
+                }
+
+                btnClose.appendChild(btnIcon);
+
+                header.appendChild(btnClose);
+
+                if (this.config.title) {
+                    var title = document.createElement('h4');
+                    title.classList.add(this.CssClasses_.HEADER_TITLE);
+                    title.appendChild(document.createTextNode(this.config.title));
+
+                    header.appendChild(title);
+                }
+
+                this.element.appendChild(header);
+                this.element.appendChild(grid);
+
+                if (bookings) {
+                    this.element.appendChild(bookings);
+                }
+
+                this.container.appendChild(this.element);
             }
-            btnClose.appendChild(btnIcon);
-
-            header.appendChild(btnClose);
-
-            if (this.config.title) {
-                var title = document.createElement('h4');
-                title.classList.add(this.CssClasses_.HEADER_TITLE);
-                title.appendChild(document.createTextNode(this.config.title));
-
-                header.appendChild(title);
-            }
-
-            this.element.appendChild(header);
-            this.element.appendChild(grid);
-
-            if (bookings) {
-                this.element.appendChild(bookings);
-            }
-
-            this.container.appendChild(this.element);
         }
     };
 

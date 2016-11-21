@@ -96,9 +96,16 @@ var datepicker = new epepite.DatePicker.DatePicker({
                 <div class="calendar-container">
                     <div id="CalendarContainer" class="calendar"></div>
                 </div>
+
+
             </div>
 
             <h6>Selected date : <span class="current-date mdl-color-text--blue-500"></span></h6>
+
+
+                <div style="width:480px;">
+                    <div id="TestCalendarBookings"></div>
+                </div>
             <p class="current-update"></p>
             <p class="type-update"></p>
 
@@ -250,16 +257,6 @@ var datepicker = new epepite.DatePicker.DatePicker({
             </tbody>
         </table>
 
-<div style="width:480px;">
-
-    <div id="SecondContainer" class="calendar"></div>
-
-    <div id="TestCalendar" class="calendar"></div>
-
-
-            <div id="TestCalendarBookings" class="mdl-calendar__bookings"></div>
-
-</div>
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
         <script src="node_modules/moment/min/moment.min.js"></script>
         <script src="dist/datepicker.min.js"></script>
@@ -324,14 +321,6 @@ var datepicker = new epepite.DatePicker.DatePicker({
                     }
                 ];
 
-                var booking = new epepite.DatePicker.BookingDay(document.querySelector('#TestCalendarBookings'), '2016-11-21', events[0], null);
-
-                booking.onChange(function(date) {
-                    console.log('change : '+ date);
-                });
-
-                booking.open();
-
                 var date     = new Date(),
                     demoDate = new Date(date.getFullYear(), date.getMonth() + 3, 15)
                 ;
@@ -347,6 +336,14 @@ var datepicker = new epepite.DatePicker.DatePicker({
                 });
 
                 calendar.on('date_update', function(event) {
+                    var booking = new epepite.DatePicker.BookingDay(document.querySelector('#TestCalendarBookings'), new Date(), events[0], null);
+
+                    booking.open();
+
+                    booking.onChange(function(date) {
+                        console.log('change : '+ date);
+                    });
+
                     document.querySelector('.current-date').innerHTML = moment(event.detail.date).format('DD/MM/YYYY');
                 });
             });
