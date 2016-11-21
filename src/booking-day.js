@@ -177,7 +177,7 @@
             hour.appendChild(document.createTextNode(this.helper.hourSplitFromString(hourItem)));
 
             selectable.classList.add(this.CssClasses_.SELECTABLE_ITEM);
-            selectable.dataset.datetime = this.booking.date + '-'+ this.helper.hourSplitFromString(hourItem);
+            selectable.dataset.datetime = this.booking.date + 'T'+ this.helper.hourSplitFromString(hourItem);
 
             item.classList.add(this.CssClasses_.GRID_ITEM);
 

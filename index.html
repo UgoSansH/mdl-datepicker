@@ -257,6 +257,8 @@ var datepicker = new epepite.DatePicker.DatePicker({
             </tbody>
         </table>
 
+        <input type="text" class="datepicker" />
+
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
         <script src="node_modules/moment/min/moment.min.js"></script>
         <script src="dist/datepicker.min.js"></script>
@@ -327,6 +329,18 @@ var datepicker = new epepite.DatePicker.DatePicker({
 
 
                 document.querySelector('.demo-calendar-date').innerHTML = 'new Date('+ demoDate.getFullYear() +', '+ demoDate.getMonth() +', '+ demoDate.getDate() +')';
+
+                var datepicker = new epepite.DatePicker.DatePicker({
+                    input:    '.datepicker',
+                    template: 'default'
+                });
+
+                //var booking = new epepite.DatePicker.BookingDay(document.querySelector('#TestCalendarBookings'), '2016-11-21', {}, null);
+
+                datepicker.on('date_update', function(event) {
+                    console.log(event);
+
+                });
 
                 var calendar = new epepite.DatePicker.Calendar({
                     'container' : document.querySelector('#CalendarContainer'),
