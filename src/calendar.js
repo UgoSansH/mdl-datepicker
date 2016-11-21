@@ -26,7 +26,7 @@
             'min_date'  : null,
             'max_date'  : null,
             'format'    : 'dd/mm/YY',
-            'template'  : 'default',
+            'template'  : 'material',
             'show'      : true
         };
 

@@ -15,11 +15,12 @@
         this.calendar = calendar;
         this.input    = null;
         this.config   = {
-            'input' : null,
-            'locale' : ((navigator) && (navigator.language)) ? navigator.language : 'en',
-            'format' : 'DD/MM/YYYY',
+            'input':    null,
+            'locale':   ((navigator) && (navigator.language)) ? navigator.language : 'en',
+            'format':   'DD/MM/YYYY',
             'min_date': null,
-            'max_date' : null
+            'max_date': null,
+            'template': 'material'
         };
 
         if (config) {
@@ -105,11 +106,12 @@
         document.body.appendChild(this.element);
 
         this.calendar = new epepite.DatePicker.Calendar({
-            'locale'    : this.config.locale,
-            'container' : this.element.querySelector('.'+ epepite.DatePicker.CONSTANTS.DATEPICKER_CLASS),
-            'date'      : this.getDate(),
-            'min_date'  : this.config.min_date,
-            'max_date'  : this.config.max_date
+            'locale':    this.config.locale,
+            'container': this.element.querySelector('.'+ epepite.DatePicker.CONSTANTS.DATEPICKER_CLASS),
+            'date':      this.getDate(),
+            'min_date':  this.config.min_date,
+            'max_date':  this.config.max_date,
+            'template':  this.config.template
         });
     };
 

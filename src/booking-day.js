@@ -24,7 +24,8 @@
             grid_end:        "23:30",
             icon_close:      "close",
             merge_travel:    true,
-            title:           "Disponibilités"
+            title:           "Disponibilités",
+            material_icons:  true
         };
 
         this.onSelectHour = null;
@@ -102,7 +103,11 @@
             btnIcon.classList.add(this.CssClasses_.ICON);
             events.classList.add(this.CssClasses_.EVENTS);
 
-            btnIcon.appendChild(document.createTextNode(this.config.icon_close));
+            if (this.config.material_icons) {
+                btnIcon.appendChild(document.createTextNode(this.config.icon_close));
+            } else {
+                btnIcon.appendChild(document.createTextNode('x'));
+            }
             btnClose.appendChild(btnIcon);
 
             header.appendChild(btnClose);

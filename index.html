@@ -342,7 +342,8 @@ var datepicker = new epepite.DatePicker.DatePicker({
                 var calendar = new epepite.DatePicker.Calendar({
                     'container' : document.querySelector('#CalendarContainer'),
                     'min_date'  : date,
-                    'max_date'  : demoDate
+                    'max_date'  : demoDate,
+                    'template':  'default'
                 });
 
                 calendar.on('date_update', function(event) {
