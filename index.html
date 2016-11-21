@@ -327,15 +327,12 @@ var datepicker = new epepite.DatePicker.DatePicker({
                     demoDate = new Date(date.getFullYear(), date.getMonth() + 3, 15)
                 ;
 
-
                 document.querySelector('.demo-calendar-date').innerHTML = 'new Date('+ demoDate.getFullYear() +', '+ demoDate.getMonth() +', '+ demoDate.getDate() +')';
 
                 var datepicker = new epepite.DatePicker.DatePicker({
                     input:    '.datepicker',
                     template: 'default'
                 });
-
-                //var booking = new epepite.DatePicker.BookingDay(document.querySelector('#TestCalendarBookings'), '2016-11-21', {}, null);
 
                 datepicker.on('date_update', function(event) {
                     console.log(event);

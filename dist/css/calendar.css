@@ -85,7 +85,7 @@
 }
 
 .mdl-calendar__booking-header {
-  margin-bottom: 1em;
+  padding: 1.5em;
 }
 
 .mdl-calendar__booking-header-title {
@@ -93,7 +93,6 @@
   margin: 0;
   padding: 0;
   font-size: 1.3em;
-  line-height: 36px;
 }
 
 .mdl-calendar__booking-grid {
