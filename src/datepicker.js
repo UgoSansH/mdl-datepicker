@@ -36,7 +36,6 @@
             throw "Not found datepicker input";
         }
 
-
         this.render();
         this.bindEvents();
     };
@@ -82,14 +81,14 @@
     epepite.DatePicker.DatePicker.prototype.show = function()
     {
         if (this.element) {
-            this.element.classList.add(epepite.DatePicker.CONSTANTS.VISIBLE_CLASS);
+            this.element.classList.add(epepite.DatePicker.CONSTANTS.IS_VISIBLE);
         }
     };
 
     epepite.DatePicker.DatePicker.prototype.hide = function()
     {
         if (this.element) {
-            this.element.classList.remove(epepite.DatePicker.CONSTANTS.VISIBLE_CLASS);
+            this.element.classList.remove(epepite.DatePicker.CONSTANTS.IS_VISIBLE);
         }
     };
 

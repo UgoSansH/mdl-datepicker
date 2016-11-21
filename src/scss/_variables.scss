@@ -2,16 +2,27 @@
 $color-white: #fff;
 
 $color-gray: #616161;
+$color-gray-100: #F5F5F5;
 $color-gray-200: #EEEEEE;
 $color-gray-300: #E0E0E0;
 $color-gray-400: #BDBDBD;
+$color-gray-500: #9E9E9E;
 
 $color-blue-100: #BBDEFB;
+$color-blue-300: #64B5F6;
 $color-blue-500 : #2196F3;
+$color-blue-700 : #1976D2;
 
 $color-primary-100: $color-blue-100 !default;
+$color-primary-300: $color-blue-300 !default;
+$color-primary-700: $color-blue-700 !default;
 $color-primary: $color-blue-500 !default;
 
+$color-secondary-100: #E1BEE7;
+$color-secondary-300: #BA68C8;
+$color-secondary-500: #9C27B0;
+$color-secondary-700: #7B1FA2;
+$color-secondary-900: #4A148C;
 
 
 @mixin shadow() {

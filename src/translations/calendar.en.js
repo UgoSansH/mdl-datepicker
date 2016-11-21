@@ -14,6 +14,7 @@
     }
 
     epepite.DatePicker.Translations.en = {
+        'close' : 'Close',
         'day'   : 'Day',
         'month' : 'Month',
         'header': {

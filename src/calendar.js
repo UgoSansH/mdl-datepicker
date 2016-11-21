@@ -9,7 +9,7 @@
         epepite.DatePicker = {};
     }
 
-    epepite.DatePicker.Calendar = function(config, translator, templating)
+    epepite.DatePicker.Calendar = function(config, translator, templating, booking)
     {
         this.date       = null;
         this.oldDate    = null;
@@ -18,6 +18,7 @@
         this.element    = null;
         this.templating = templating;
         this.translator = translator;
+        this.events     = new Map();
         this.config     = {
             'container' : null,
             'locale'    : ((navigator) && (navigator.language)) ? navigator.language : 'en',
@@ -74,7 +75,7 @@
     epepite.DatePicker.Calendar.prototype.show = function()
     {
         if (this.element) {
-            this.element.classList.add(epepite.DatePicker.CONSTANTS.VISIBLE_CLASS);
+            this.element.classList.add(epepite.DatePicker.CONSTANTS.IS_VISIBLE);
         }
 
         this.dispatch('show');
@@ -83,7 +84,7 @@
     epepite.DatePicker.Calendar.prototype.hide = function()
     {
         if (this.element) {
-            this.element.classList.remove(epepite.DatePicker.CONSTANTS.VISIBLE_CLASS);
+            this.element.classList.remove(epepite.DatePicker.CONSTANTS.IS_VISIBLE);
         }
 
         this.dispatch('hide');
@@ -91,8 +92,8 @@
 
     epepite.DatePicker.Calendar.prototype.isVisible = function()
     {
-        return (this.element) ? this.element.classList.contains(epepite.DatePicker.CONSTANTS.VISIBLE_CLASS) : false;
-    }
+        return (this.element) ? this.element.classList.contains(epepite.DatePicker.CONSTANTS.IS_VISIBLE) : false;
+    };
 
     epepite.DatePicker.Calendar.prototype.refresh = function()
     {
@@ -106,30 +107,29 @@
 
             if (this.config.min_date) {
                 if (this.cursorDate.getFullYear() <= this.config.min_date.getFullYear()) {
-                    this.element.querySelector('.'+ constants.YEAR_PREV_CLASS).classList.remove(constants.VISIBLE_CLASS);
+                    this.element.querySelector('.'+ constants.YEAR_PREV_CLASS).classList.remove(constants.IS_VISIBLE);
 
                     if (this.cursorDate.getMonth() <= this.config.min_date.getMonth()) {
-                    console.log('no update month');
-                        this.element.querySelector('.'+ constants.MONTH_PREV_CLASS).classList.remove(constants.VISIBLE_CLASS);
+                        this.element.querySelector('.'+ constants.MONTH_PREV_CLASS).classList.remove(constants.IS_VISIBLE);
                     } else {
-                        this.element.querySelector('.'+ constants.MONTH_PREV_CLASS).classList.add(constants.VISIBLE_CLASS);
+                        this.element.querySelector('.'+ constants.MONTH_PREV_CLASS).classList.add(constants.IS_VISIBLE);
                     }
                 } else {
-                    this.element.querySelector('.'+ constants.YEAR_PREV_CLASS).classList.add(constants.VISIBLE_CLASS);
+                    this.element.querySelector('.'+ constants.YEAR_PREV_CLASS).classList.add(constants.IS_VISIBLE);
                 }
             }
 
             if (this.config.max_date) {
                 if (this.cursorDate.getFullYear() >= this.config.max_date.getFullYear()) {
-                    this.element.querySelector('.'+ constants.YEAR_NEXT_CLASS).classList.remove(constants.VISIBLE_CLASS);
+                    this.element.querySelector('.'+ constants.YEAR_NEXT_CLASS).classList.remove(constants.IS_VISIBLE);
 
                     if (this.cursorDate.getMonth() >= this.config.max_date.getMonth()) {
-                        this.element.querySelector('.'+ constants.MONTH_NEXT_CLASS).classList.remove(constants.VISIBLE_CLASS);
+                        this.element.querySelector('.'+ constants.MONTH_NEXT_CLASS).classList.remove(constants.IS_VISIBLE);
                     } else {
-                        this.element.querySelector('.'+ constants.MONTH_NEXT_CLASS).classList.add(constants.VISIBLE_CLASS);
+                        this.element.querySelector('.'+ constants.MONTH_NEXT_CLASS).classList.add(constants.IS_VISIBLE);
                     }
                 } else {
-                    this.element.querySelector('.'+ constants.YEAR_NEXT_CLASS).classList.add(constants.VISIBLE_CLASS);
+                    this.element.querySelector('.'+ constants.YEAR_NEXT_CLASS).classList.add(constants.IS_VISIBLE);
                 }
             }
         }
@@ -141,7 +141,7 @@
             nextYear  = this.selectNotUpgraded('.'+ epepite.DatePicker.CONSTANTS.YEAR_NEXT_CLASS),
             prevMonth = this.selectNotUpgraded('.'+ epepite.DatePicker.CONSTANTS.MONTH_PREV_CLASS),
             nextMonth = this.selectNotUpgraded('.'+ epepite.DatePicker.CONSTANTS.MONTH_NEXT_CLASS),
-            days      = this.selectNotUpgraded('.'+ epepite.DatePicker.CONSTANTS.DAY_CLASS +':not(.'+ epepite.DatePicker.CONSTANTS.DISABLED_CLASS +')')
+            days      = this.selectNotUpgraded('.'+ epepite.DatePicker.CONSTANTS.DAY_CLASS +':not(.'+ epepite.DatePicker.CONSTANTS.IS_DISABLED +')')
         ;
 
         // Create all dispatcher nodes
@@ -161,8 +161,13 @@
                 self.dispatch(eventName, {"node": this});
             });
 
-            nodes[i].classList.add(epepite.DatePicker.CONSTANTS.UPGRADED_CLASS);
+            nodes[i].classList.add(epepite.DatePicker.CONSTANTS.IS_UPGRADED);
         }
+    };
+
+    epepite.DatePicker.Calendar.prototype.refreshEvents = function()
+    {
+
     };
 
     epepite.DatePicker.Calendar.prototype.onPrevYear = function(event)
@@ -196,10 +201,10 @@
             selectedDays = this.element.querySelectorAll('.'+ constants.DAY_CONTAINER_CLASS +' .'+ constants.DAY_CLASS);
 
         for (var i = 0; i < selectedDays.length; i++) {
-            selectedDays[i].classList.remove(epepite.DatePicker.CONSTANTS.SELECTED_CLASS);
+            selectedDays[i].classList.remove(epepite.DatePicker.CONSTANTS.IS_SELECTED);
         }
 
-        node.classList.add(epepite.DatePicker.CONSTANTS.SELECTED_CLASS);
+        node.classList.add(epepite.DatePicker.CONSTANTS.IS_SELECTED);
         this.cursorDate.setDate(node.dataset.day);
         this.date = new Date(this.cursorDate.getFullYear(), this.cursorDate.getMonth(), node.dataset.day);
 
@@ -232,7 +237,7 @@
 
             this.refresh();
 
-            this.element.classList.add(epepite.DatePicker.CONSTANTS.UPGRADED_CLASS);
+            this.element.classList.add(epepite.DatePicker.CONSTANTS.IS_UPGRADED);
             this.dispatch('upgraded');
         }
     };
@@ -339,11 +344,12 @@
 
         element.innerHTML   = this.formatNumber(date.getDate());
         element.dataset.day = date.getDate();
+        element.dataset.id  = this.renderDayId(date);
         element.classList.add(epepite.DatePicker.CONSTANTS.WEEK_ITEM_CLASS);
         element.classList.add(epepite.DatePicker.CONSTANTS.DAY_CLASS);
 
         if (date.toDateString() == this.date.toDateString()) {
-            element.classList.add(epepite.DatePicker.CONSTANTS.SELECTED_CLASS);
+            element.classList.add(epepite.DatePicker.CONSTANTS.IS_SELECTED);
         }
 
         if (date.toDateString() == today.toDateString()) {
@@ -352,24 +358,29 @@
 
         if (date.getMonth() != this.cursorDate.getMonth()) {
             element.setAttribute('disable', 'disable');
-            element.classList.add(epepite.DatePicker.CONSTANTS.DISABLED_CLASS);
+            element.classList.add(epepite.DatePicker.CONSTANTS.IS_DISABLED);
         }
 
         if (this.config.min_date) {
             if (date < this.config.min_date) {
                 element.setAttribute('disable', 'disable');
-                element.classList.add(epepite.DatePicker.CONSTANTS.DISABLED_CLASS);
+                element.classList.add(epepite.DatePicker.CONSTANTS.IS_DISABLED);
             }
         }
 
         if (this.config.max_date) {
             if (date > this.config.max_date) {
                 element.setAttribute('disable', 'disable');
-                element.classList.add(epepite.DatePicker.CONSTANTS.DISABLED_CLASS);
+                element.classList.add(epepite.DatePicker.CONSTANTS.IS_DISABLED);
             }
         }
 
         return element;
+    };
+
+    epepite.DatePicker.Calendar.prototype.renderDayId = function(date)
+    {
+        return date.getFullYear() +'-'+ this.formatNumber(date.getMonth() + 1) +'-'+ this.formatNumber(date.getDate());
     };
 
     epepite.DatePicker.Calendar.prototype.getContainerDay = function(daysContainer)
@@ -413,7 +424,7 @@
 
     epepite.DatePicker.Calendar.prototype.selectNotUpgraded = function(selector)
     {
-        return this.element.querySelectorAll(selector +':not(.'+ epepite.DatePicker.CONSTANTS.UPGRADED_CLASS +')')
+        return this.element.querySelectorAll(selector +':not(.'+ epepite.DatePicker.CONSTANTS.IS_UPGRADED +')')
     };
 
     epepite.DatePicker.Calendar.prototype.formatDate = function(date)
@@ -445,7 +456,7 @@
     epepite.DatePicker.Calendar.prototype.setDate = function(date)
     {
         if (!(date instanceof Date)) {
-            throw '[InvalidArgument] Calendar.setDate(Date date) must be an instance of date';
+            throw '[InvalidArgument] Calendar.setDate(Date date) must be an instance of Date';
         }
 
         this.date        = date;
@@ -453,6 +464,31 @@
         this.refresh();
 
         return this;
-    }
+    };
+
+    epepite.DatePicker.Calendar.prototype.setEvents = function(events)
+    {
+        this.events = new Map();
+
+        for (var key in events) {
+            if (events.hasOwnProperty(key)) {
+                this.events.set(events[key].date, events[key]);
+            }
+        }
+
+        return this;
+    };
+
+    epepite.DatePicker.Calendar.prototype.addEvent = function(event)
+    {
+        this.events.set(event.date, event);
+
+        return this;
+    };
+
+    epepite.DatePicker.Calendar.prototype.clearEvents = function()
+    {
+
+    };
 
 })(window);

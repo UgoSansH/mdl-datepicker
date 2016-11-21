@@ -36,20 +36,24 @@ module.exports = function(grunt) {
             "dist": {
                 "files": {
                     "dist/calendar.min.js" : [
+                        "src/helper.js",
                         "src/translations/*.js",
                         "src/templates/*.js",
                         "src/calendar.js",
+                        "src/booking-day.js",
                         "src/constants.js",
-                        "src/tempate.js",
+                        "src/template.js",
                         "src/translations.js",
                     ],
                     "dist/datepicker.min.js" : [
+                        "src/helper.js",
                         "src/translations/*.js",
                         "src/templates/*.js",
                         "src/calendar.js",
                         "src/constants.js",
                         "src/datepicker.js",
-                        "src/tempate.js",
+                        "src/booking-day.js",
+                        "src/template.js",
                         "src/translations.js",
                     ],
                     "dist/material-datepicker.min.js": [
@@ -73,6 +77,7 @@ module.exports = function(grunt) {
                 "files": [
                     "src/translations/*.js",
                     "src/material-design-lite/*.js",
+                    "src/templates/*.js",
                     "src/*.js"
                 ],
                 "tasks": [

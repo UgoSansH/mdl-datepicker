@@ -1,7 +1,7 @@
-(function(window) {
+(function() {
     'use strict';
 
-    if (typeof window.epepite == "undefined") {
+    if (typeof epepite == "undefined") {
         window.epepite = {};
     }
 
@@ -9,9 +9,7 @@
         epepite.DatePicker = {};
     }
 
-    epepite.DatePicker.Template = function()
-    {
-    };
+    epepite.DatePicker.Template = function() {};
 
     epepite.DatePicker.Template.prototype.load = function(name)
     {
@@ -33,4 +31,4 @@
         return template;
     };
 
-})(window);
+})();

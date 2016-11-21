@@ -250,14 +250,92 @@ var datepicker = new epepite.DatePicker.DatePicker({
             </tbody>
         </table>
 
+<div style="width:480px;">
+
+    <div id="SecondContainer" class="calendar"></div>
+
+    <div id="TestCalendar" class="calendar"></div>
+
+
+            <div id="TestCalendarBookings" class="mdl-calendar__bookings"></div>
+
+</div>
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
         <script src="node_modules/moment/min/moment.min.js"></script>
-        <script src="dist/material-datepicker.min.js"></script>
+        <script src="dist/datepicker.min.js"></script>
         <script type="text/javascript">
             window.addEventListener('load', function() {
+
+                var events = [
+                    {
+                        "date": "2016-11-21",
+                        "available": true,
+                        "hours": {
+                            "start": "10:00",
+                            "end":   "20:00"
+                        },
+                        "events": [
+                            {
+                                "id":          1,
+                                "title":       "Réservation",
+                                "start":       "10:30",
+                                "end":         "11:30",
+                                "travel_time": "00:20"
+                            },
+                            {
+                                "id":          2,
+                                "title":       "Réservation",
+                                "start":       "13:30",
+                                "end":         "15:00",
+                                "travel_time": "00:25"
+                            },
+                            {
+                                "id":          3,
+                                "title":       "Réservation",
+                                "start":       "16:00",
+                                "end":         "17:00",
+                                "travel_time": "00:20"
+                            }
+                        ]
+                    },
+                    {
+                        "date": "2016-11-12",
+                        "available": true,
+                        "hours": {
+                            "start": "18:00",
+                            "end":   "00:00"
+                        },
+                        "events": [
+                            {
+                                "id":          1,
+                                "title":       "Réservation",
+                                "start":       "19:00",
+                                "end":         "20:00",
+                                "travel_time": "01:00"
+                            },
+                            {
+                                "id":          2,
+                                "title":       "Réservation",
+                                "start":       "20:00",
+                                "end":         "21:30",
+                                "travel_time": "00:50"
+                            }
+                        ]
+                    }
+                ];
+
+                var booking = new epepite.DatePicker.BookingDay(document.querySelector('#TestCalendarBookings'), '2016-11-21', events[0], null);
+
+                booking.onChange(function(date) {
+                    console.log('change : '+ date);
+                });
+
+                booking.open();
+
                 var date     = new Date(),
                     demoDate = new Date(date.getFullYear(), date.getMonth() + 3, 15)
                 ;
+
 
                 document.querySelector('.demo-calendar-date').innerHTML = 'new Date('+ demoDate.getFullYear() +', '+ demoDate.getMonth() +', '+ demoDate.getDate() +')';
 

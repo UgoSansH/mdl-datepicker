@@ -18,7 +18,8 @@
 
 .mdl-calendar__header,
 .mdl-calendar__body,
-.mdl-calendar__footer {
+.mdl-calendar__footer,
+.mdl-calendar__bookings {
     padding: 18px;
 }
 
@@ -65,6 +66,96 @@
     font-size: 2em;
     padding: 0;
     margin: 20px 0 0
+}
+
+.mdl-calendar__content {
+    position: relative;
+    box-sizing: border-box;
+}
+
+
+.mdl-calendar__bookings {
+    position: relative;
+    overflow-y: scroll;
+    width: 100%;
+    height: 400px;
+    background-color: $color-white;
+    box-sizing: border-box;
+
+    @include shadow();
+}
+
+.mdl-calendar__booking {
+    display: none;
+}
+
+.mdl-calendar__booking.is-visible { display: block }
+
+
+.mdl-calendar__booking-header {
+    margin-bottom: 1em;
+}
+
+.mdl-calendar__booking-header-title {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 1.3em;
+    line-height: 36px;
+}
+
+.mdl-calendar__booking-grid {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+}
+
+.booking-grid__item {
+    display: block;
+    cursor: pointer;
+    height: 29px;
+    border-top: 1px solid $color-gray-300;
+}
+
+.booking-grid__item.booking-grid__item--hour {
+    border-color: $color-primary-300;
+}
+
+.booking-grid__item-hour {
+    float: left;
+    color: $color-gray-500;
+    line-height: 29px;
+    width: 50px;
+}
+
+.booking-grid__item-selectable {
+    margin: 0 22px 0 54px;
+    height: 29px;
+}
+
+.booking-grid__item-selectable:hover {
+    background-color: $color-gray-100;
+}
+
+.mdl-calendar__booking-events {
+    position: relative;
+}
+
+.mdl-calendar__booking-event {
+    position: absolute;
+    left: 54px;
+    right: 22px;
+    padding: .4em;
+    color: $color-primary-700;
+    background-color: $color-primary-100;
+    border: 1px solid $color-primary-300;
+    box-sizing: border-box;
+}
+
+.mdl-calendar__booking-event.event--travel {
+    color: $color-secondary-700;
+    background-color: $color-secondary-100;
+    border-color: $color-secondary-300;
 }
 
 .mdl-calendar__body .mdl-calendar__body-month { font-weight: 500 }

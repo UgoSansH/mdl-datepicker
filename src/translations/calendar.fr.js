@@ -14,11 +14,16 @@
     }
 
     epepite.DatePicker.Translations.fr = {
-        'day'   : 'Jour',
-        'month' : 'Mois',
-        'header': {
-            'year_next' : 'Année suivante',
-            'year_prev' : 'Année précédente %year%'
+        'close':       'Fermer',
+        'booking':     'Réservation',
+        'reserve':     'Réservé',
+        'travel':      'Trajet',
+        'travel_time': 'Temps de trajet',
+        'day':         'Jour',
+        'month':       'Mois',
+        'header':      {
+            'year_next': 'Année suivante',
+            'year_prev': 'Année précédente %year%'
         },
         'days' : [
             'Dimanche',
