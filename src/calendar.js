@@ -246,16 +246,22 @@
     {
         var constants = epepite.DatePicker.CONSTANTS;
 
-        var fullDates    = this.element.querySelectorAll('.'+ constants.TEXT_DATE_CLASS),
-            years        = this.element.querySelectorAll('.'+ constants.YEAR_CLASS),
-            months       = this.element.querySelectorAll('.'+ constants.MONTH_CLASS),
-            transDay     = this.translator.trans('days'),
+        var fullDates    = this.element.querySelectorAll('.' + constants.TEXT_DATE_CLASS),
+            years        = this.element.querySelectorAll('.' + constants.YEAR_CLASS),
+            months       = this.element.querySelectorAll('.' + constants.MONTH_CLASS),
+            weekLabels   = this.element.querySelectorAll('.' + constants.WEEK_LABEL_CLASS),
+            transDays    = this.translator.trans('days'),
             transMonths  = this.translator.trans('months')
         ;
 
-        var dayText   = transDay[this.date.getDay()];
+        var dayText   = transDays[this.date.getDay()];
         var monthText = transMonths[this.cursorDate.getMonth()];
         var fullDate  = this.formatDate(this.date);
+
+        // set week-labels
+        for (var i = 0; i < weekLabels.length; i++) {
+            weekLabels[i].innerHTML = transDays[(i + 1) % 7].charAt(0);
+        }
 
         for (var i = 0; i < fullDates.length; i++) {
             fullDates[i].innerHTML = fullDate;

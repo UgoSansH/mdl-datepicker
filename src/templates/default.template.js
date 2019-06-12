@@ -25,10 +25,10 @@
         + '<p class="mdl-calendar__body-month-title"><span class="%MONTH_CLASS%">Mars</span> <span class="%YEAR_CLASS%">2016</span></p>'
         + '<button type="button" name="mdl-calenda__month--next" class="%MONTH_NEXT_CLASS% %IS_VISIBLE% mdl-calendar__button"><i class="icon material-icons">></i></button>'
         + '</div><div class="%WEEK_LABELS_CLASS%"><div class="%WEEK_CLASS% %WEEK_LABELS_CLASS%">'
-        + '<span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%">L</span><span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%">M</span>'
-        + '<span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%">M</span><span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%">J</span>'
-        + '<span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%">V</span><span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%">S</span>'
-        + '<span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%">D</span></div></div><div class="%DAY_CONTAINER_CLASS%"></div></div></div>'
+        + '<span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%"></span><span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%"></span>'
+        + '<span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%"></span><span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%"></span>'
+        + '<span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%"></span><span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%"></span>'
+        + '<span class="%WEEK_ITEM_CLASS% %WEEK_LABEL_CLASS%"></span></div></div><div class="%DAY_CONTAINER_CLASS%"></div></div></div>'
     ;
 
 
