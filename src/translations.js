@@ -47,17 +47,17 @@
     {
         locale = locale || this.locale;
 
-        if (typeof this.translations[locale] == "object") {
+        if (typeof this.translations[locale] === "object") { // has translation
             var translate = '';
 
-            if (typeof this.translations[locale][message] != "undefined") {
+            if (typeof this.translations[locale][message] !== "undefined") {
                 translate = this.translations[locale][message];
-            } else {
+            } else {  // no found, try to split by . and get dict in dict and so on…
                 var domain = this.translations[locale];
                 var keys   = message.split('.');
 
                 for (var i = 0; i < keys.length; i++) {
-                    if (typeof domain[keys[i]] != "undefined") {
+                    if (typeof domain[keys[i]] !== "undefined") {
                         domain = domain[keys[i]];
                     } else {
                         return message;
@@ -67,7 +67,7 @@
                 translate = domain;
             }
 
-            if (typeof translate == "string") {
+            if (typeof translate === "string") {  // replace parameters
                 if (params) {
                     for (var key in params) {
                         if (params.hasOwnProperty(key)) {
@@ -78,6 +78,9 @@
             }
 
             return translate;
+        }
+        else {
+            throw 'No translation for locale ' + locale;
         }
 
         return message;
